@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Users: View {
-    var usersProvider : DataProvider<User> = DataProvider<User>(finalPathComponent:"users?page=1&limit=10")
+    var usersProvider : DataProvider<User> = DataProvider<User>(endPoint:"users?page=1&limit=10")
     
     @FetchRequest(
         entity: User.entity(),

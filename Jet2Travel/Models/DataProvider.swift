@@ -21,7 +21,7 @@ class DataProvider<T:DataObject> : NSObject, NSFetchedResultsControllerDelegate,
     let dataObjects : NSFetchedResultsController<NSFetchRequestResult>
     private var pageIndex : Int = 1
     
-    init(finalPathComponent pathComponent:String) {
+    init(endPoint pathComponent:String) {
         finalPathComponent = pathComponent;
         
         let fetchRequest = T.fetchRequest()

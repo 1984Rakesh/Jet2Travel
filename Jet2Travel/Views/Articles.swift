@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Articles: View {
-    @ObservedObject var articleProvider : DataProvider<Article> = DataProvider<Article>(finalPathComponent:"blogs")
+    @ObservedObject var articleProvider : DataProvider<Article> = DataProvider<Article>(endPoint:"blogs")
     
     var body: some View {
         List(articleProvider) { article in
