@@ -8,18 +8,13 @@
 import SwiftUI
 
 struct Articles: View {
-    var articleProvider : DataProvider<Article> = DataProvider<Article>(finalPathComponent:"blogs")
-    
-    @FetchRequest(
-        entity: Article.entity(),
-        sortDescriptors: []
-    ) var articles : FetchedResults<Article>
+    @ObservedObject var articleProvider : DataProvider<Article> = DataProvider<Article>(finalPathComponent:"blogs")
     
     var body: some View {
-        List(articles) { article in
+        List(articleProvider) { article in
             UserArticleCell(article: article)
                 .onAppear {
-                    if articles.last == article {
+                    if articleProvider.last == article {
                         articleProvider.fetchNext{ _ in }
                     }
                 }
