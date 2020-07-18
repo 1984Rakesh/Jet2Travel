@@ -33,11 +33,11 @@ class DataProvider<T:DataObject> : NSObject, NSFetchedResultsControllerDelegate,
         
         super.init()        
         dataObjects.delegate = self
-        try? dataObjects.performFetch()
     }
     
     func fetchData(completionHandler: @escaping (Error?) -> Void) {
         if( pageIndex == 1 ){
+            try? dataObjects.performFetch()
             self.fetchNext(completionHandler: completionHandler)
         }
         else {
