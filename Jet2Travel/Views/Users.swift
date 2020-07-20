@@ -8,24 +8,17 @@
 import SwiftUI
 
 struct Users: View {
-    var usersProvider : DataProvider<User> = DataProvider<User>(endPoint:"users?page=1&limit=10")
-    
-    @FetchRequest(
-        entity: User.entity(),
-        sortDescriptors: []
-    ) var users : FetchedResults<User>
-            
+    @ObservedObject
+    var usersProvider = DataProvider<User>(endPoint:"users")
+                
     var body: some View {
-        List(users) { user in
+        List(usersProvider) { user in
             UserCell(user: user, additionalDetails: user.city)
                 .onAppear {
                     if usersProvider.last == user {
-
+                        usersProvider.fetchNext { _ in }
                     }
                 }
-        }
-        .onAppear {
-//            usersProvider.fetchData { _ in }
         }
         .navigationTitle("Users")
     }
