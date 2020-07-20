@@ -19,7 +19,7 @@ class DataProvider<T:DataObject> : NSObject, NSFetchedResultsControllerDelegate,
     let baseURL = "https://5e99a9b1bc561b0016af3540.mockapi.io/jet2/api/v1/"
     let finalPathComponent : String
     let dataObjects : NSFetchedResultsController<NSFetchRequestResult>
-    private var pageIndex : Int = 1
+    public var pageIndex : Int = 1
     
     init(endPoint pathComponent:String) {
         finalPathComponent = pathComponent;
@@ -33,6 +33,7 @@ class DataProvider<T:DataObject> : NSObject, NSFetchedResultsControllerDelegate,
         
         super.init()        
         dataObjects.delegate = self
+        self.fetchData { _ in }
     }
     
     func fetchData(completionHandler: @escaping (Error?) -> Void) {
